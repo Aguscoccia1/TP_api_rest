@@ -50,4 +50,23 @@ public class MascotaController : ControllerBase
            
     }
 
+
+    [HttpPost("perro")]
+
+    public IActionResult create([FromBody]Perro NuevoPerro)
+    {
+        listaMascotas.Add (NuevoPerro);
+        return Ok("Perro registrado");
+    }
+
+
+
+
+    [HttpPost("gato")]
+
+    public IActionResult create([FromBody]Gato NuevoGato)
+    {
+        listaMascotas.Add (NuevoGato);
+        return Ok("Gato registrado");
+    }
 }
