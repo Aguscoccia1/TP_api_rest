@@ -129,4 +129,34 @@ public class MascotaController : ControllerBase
         return NotFound("Mascota no encontrada");
     }
 
+
+    [HttpPut("{id}")]
+
+    public IActionResult updateMascota (int id, [FromBody] Mascota MascotaActualizada)
+    {
+        foreach (Mascota m in listaMascotas )
+        {
+           
+            if(m.Id == id && m is Gato gato && MascotaActualizada is Gato Gatoactualizado)
+            {
+                gato.Nombre = Gatoactualizado.Nombre;
+                gato.Edad = Gatoactualizado.Edad;
+                gato.Color = Gatoactualizado.Color;
+
+
+                return Ok("Gato actualizado");
+            }
+            else if (m.Id == id && m is Perro perro && MascotaActualizada is Perro Perroactualizado)
+            {
+                perro.Nombre = Perroactualizado.Nombre;
+                perro.Edad = Perroactualizado.Edad;
+                perro.Raza = Perroactualizado.Raza;
+
+
+                return Ok("Perro actualizado");
+            }
+        }
+
+        return NotFound("Mascota no encontrada");
+    }
 }
