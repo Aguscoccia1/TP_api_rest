@@ -69,4 +69,23 @@ public class MascotaController : ControllerBase
         listaMascotas.Add (NuevoGato);
         return Ok("Gato registrado");
     }
+
+
+    [HttpDelete("{id}")]
+
+    public IActionResult Delete(int id)
+    {
+        foreach (Mascota p in listaMascotas)
+        {
+            if(p.Id == id)
+            {
+                listaMascotas.Remove(p);
+                return Ok ("Mascota eliminada");
+            }
+        }
+
+
+        return NotFound("Mascota no encontrada");
+    }
+
 }
