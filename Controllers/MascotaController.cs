@@ -51,6 +51,47 @@ public class MascotaController : ControllerBase
     }
 
 
+    [HttpGet("/Mascota/mayores-a/{edad}")]
+
+    public IActionResult GerByEdad(int edad)
+    {
+        List<Mascota> mascotasMayores = new();
+        foreach(Mascota m in listaMascotas)
+        {
+            if (m.Edad > edad)
+            {
+                mascotasMayores.Add(m);
+            }
+           
+        }
+       
+        return Ok(mascotasMayores);
+           
+    }
+
+
+    [HttpGet("/Mascota/tipo/{tipo}")]
+
+    public IActionResult GetByTipo(string tipo)
+    {
+        List<Mascota> mascotasTipo = new();
+        foreach(Mascota m in listaMascotas)
+        {
+            if (tipo.ToLower() == "perro" && m is Perro)
+            {
+                mascotasTipo.Add(m);
+            }
+            else if (tipo.ToLower() == "gato" && m is Gato)
+            {
+                mascotasTipo.Add(m);
+            }
+        }
+       
+        return Ok(mascotasTipo);
+           
+    }
+
+
     [HttpPost("perro")]
 
     public IActionResult create([FromBody]Perro NuevoPerro)
